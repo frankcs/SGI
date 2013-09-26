@@ -1,0 +1,35 @@
+
+{% extends "SGIAPP/base.html" %}
+
+{% block title %}SGI-INICIO{% endblock %}
+
+{% block content %}
+<div>
+    <h2>Bienvenido al Sistema de Gestión de incidencias</h2>
+    <h3>Por favor introduzca sus datos para acceder</h3>
+</div>
+<div>
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+    <div class="forms">
+        <div class="forms-inner">
+            <form action="{% url 'SGIAPP:login' %}" method="post">
+                {% csrf_token %}
+                <label>Nombre de usuario:</label>
+                <br>
+                <input type="text" name="username">
+                <br>
+                <label>Contraseña:</label>
+                <br>
+                <input type="password" name="password">
+                <br>
+                <input type="submit" value="Entrar">
+            </form>
+        </div>
+    </div>
+</div>
+<div>
+    <a href="{% url 'SGIAPP:register' %}">Registrarse</a>
+</div>
+{% endblock %}

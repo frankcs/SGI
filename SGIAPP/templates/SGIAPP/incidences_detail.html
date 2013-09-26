@@ -1,0 +1,55 @@
+{% extends "SGIAPP/base.html" %}
+
+{% block title %}INCIDENCIA {{ incidence.id }}{% endblock %}
+
+{% block content %}
+
+    <h4>Número de incidencia -- {{ incidence.id }}</h4>
+    <h4>Contenido</h4>
+    <p class="with_borders">{{ incidence.content }}</p>
+    <h4>Publicada: </h4>
+    <p>{{ incidence.pub_date }}</p>
+    <h4>Reportada a: </h4>
+    <p>{{ incidence.entity }}</p>
+
+    <h4>Confirmada -- <input disabled="true" type="checkbox"
+            {% if incidence.confirmed %}
+                             checked
+            {% endif %}>
+    </h4>
+
+    <h4>Fecha de Confirmación:</h4>
+    <p>
+        {%if incidence.confirmation_date %}
+            {{incidence.confirmation_date }}
+        {% else %}
+            No confirmada
+        {% endif %}
+    </p>
+    <h4>Terminada --<input disabled="true" type="checkbox"
+            {% if incidence.finished %}
+                              checked
+            {% endif %}>
+    </h4>
+
+    <h4>Fecha de Finalización:</h4>
+    <p>
+        {%if incidence.finishing_date %}
+            {{incidence.finishing_date }}
+        {% else %}
+            Sin finalizar
+        {% endif %}
+    </p>
+
+    <h4>Mensaje de Finalización:</h4>
+    <p class="with_borders">
+        {% if incidence.finished_msg %}
+            {{ incidence.finished_msg }}
+        {% else %}
+            No hay Mensaje
+        {% endif %}
+    </p>
+    <br>
+    <a href="{% url 'SGIAPP:userilist' %}">Atrás</a>
+
+{% endblock %}

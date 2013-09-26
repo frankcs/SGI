@@ -1,0 +1,42 @@
+{% extends "SGIAPP/base.html" %}
+
+{% block title %}REGISTRARSE{% endblock %}
+
+{% block content %}
+    <div>
+        <h3>Por favor introduzca sus datos para registrarte</h3>
+    </div>
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+    <div class="forms">
+        <div class="forms-inner">
+            <form action="{% url 'SGIAPP:doregistration' %}" method="post">
+                {% csrf_token %}
+                <label>Nombre de usuario</label>
+                <br>
+                <input type="text" name="username">
+                <br>
+                <label>Contraseña</label>
+                <br>
+                <input type="password" name="password">
+                <br>
+                <label>Confirmar contraseña</label>
+                <br>
+                <input type="password" name="cpassword">
+                <br>
+                <label>Email</label>
+                <br>
+                <input type="text" name="email">
+                <br>
+                <input type="submit" value="Registrarse">
+                <br>
+                <p>
+                    Realice un Reporte de Incidencia a los Administradores del Sistema
+                    para realizar una solicitud de pertenencia a alguna de las entidades
+                    autorizadas, con sus datos personales para realizar las verificaciones.
+                </p>
+            </form>
+        </div>
+    </div>
+{% endblock %}

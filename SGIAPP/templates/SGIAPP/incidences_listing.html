@@ -1,0 +1,37 @@
+{% extends "SGIAPP/base.html" %}
+
+{% block title %}SGI-Sus incidencias{% endblock %}
+
+{% block content %}
+    <h4>Sus incidencias reportadas:</h4>
+    {% if object_list %}
+        <ul>
+            {% for incidence in object_list %}
+                <div class="item-listing">
+                    <a href="{% url 'SGIAPP:incidence_detail' incidence.id %}">{{ incidence.content }}</a>
+                    <br>
+                    <label>Publicada: {{ incidence.pub_date }}</label>
+                    <br>
+                    <label>Confirmada <input disabled="true" type="checkbox"
+                            {% if incidence.confirmed %}
+                                checked
+                            {% endif %}>
+                    </label>
+                    <br>
+                    <label>Terminada <input disabled="true" type="checkbox"
+                            {% if incidence.finished %}
+                                checked
+                            {% endif %}>
+                    </label>
+                </div>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No ha reportado incidencias.</p>
+    {% endif %}
+    <a href="{% url 'SGIAPP:report_incidence' %}">Reportar una nueva incidencia</a>
+    <br>
+    {% if entities %}
+        <a href="{% url 'SGIAPP:check_incidences' %}">Chequear las incidencias asociadas a mis entidades</a>
+   {% endif %}
+{% endblock %}

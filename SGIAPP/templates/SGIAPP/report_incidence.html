@@ -1,0 +1,25 @@
+{% extends "SGIAPP/base.html" %}
+
+{% block title %}SGI-REPORTAR{% endblock %}
+
+{% block content %}
+    <div class="forms">
+        <div class="forms-inner">
+            <form action="{% url 'SGIAPP:do_report' %}" method="post">
+                {% csrf_token %}
+                <h4>Describa su incidencia:</h4>
+                <textarea name="content"></textarea>
+                <h4>Reportar a:</h4>
+                <select name="entity">
+                {% for ent in entities %}
+                    <option value="{{ ent.id }}">{{ ent.name }}</option>
+                {% endfor %}
+                </select>
+                <br>
+                <br>
+                <input type="submit" value="Reportar">
+            </form>
+        </div>
+    </div>
+    <a href="{% url 'SGIAPP:userilist' %}">Atrás</a>
+{% endblock %}

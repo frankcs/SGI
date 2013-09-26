@@ -1,0 +1,19 @@
+{% extends "SGIAPP/base.html" %}
+
+{% block title %}SGI-REPORTAR{% endblock %}
+
+{% block content %}
+    <div class="forms">
+        <div class="forms-inner">
+            <form action="{% url 'SGIAPP:do_finish' %}" method="post">
+                {% csrf_token %}
+                <h4>Escriba un mensaje de finalización para la incidencia:</h4>
+                <textarea name="content"></textarea>
+                <input type="hidden" name="id" value="{{ id }}">
+                <br>
+                <input type="submit" value="Finalizar">
+            </form>
+        </div>
+    </div>
+    <a href="{% url 'SGIAPP:check_incidences' %}">Atrás</a>
+{% endblock %}
